@@ -20,6 +20,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(instance.updated_at)
         # check if the id attribute is of type string
         self.assertEqual(type(instance.id), str)
+        # check if an instance of BaseModel can be recreated from a dictionary
+        dictionary = instance.to_dict()
+        instance_2 = BaseModel(** dictionary)
+        self.assertEqual(instance.id, instance_2.id)
 
     def test_str(self):
         """Test the str() method of BaseModel"""

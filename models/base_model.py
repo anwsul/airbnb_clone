@@ -7,14 +7,24 @@ import copy
 import uuid
 from datetime import datetime
 
+
 class BaseModel():
     """A base class from which other classes inherit"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Constructor for the BaseModel class"""
-        # when an instance is created, it will have unique id
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        # if a dictionary is passed, create the instance from it
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key == 'created_at' or key == 'updated_at':
+                        value = datetime.fromisoformat(value)
+                    setattr(self, key, value)
+
+        else:
+            # when an instance is created, it will have unique id
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Return the string representation of a BaseModel instance"""
