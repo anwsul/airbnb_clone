@@ -8,6 +8,7 @@ to a JSON file and deserializes JSON file to BaseModel instances
 
 import json
 from os import path
+from models.base_model import BaseModel
 
 
 class FileStorage():
