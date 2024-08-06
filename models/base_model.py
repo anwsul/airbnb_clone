@@ -5,6 +5,7 @@ Contains a class BaseModel from which other classes inherit
 """
 import copy
 import uuid
+import models
 from datetime import datetime
 
 
@@ -25,6 +26,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """Return the string representation of a BaseModel instance"""
@@ -33,6 +35,7 @@ class BaseModel():
     def save(self):
         """Update the time when a BaseModel instance's attribute is modified"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Return a dictionary representation of a BaseModel instance"""

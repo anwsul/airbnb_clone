@@ -12,7 +12,7 @@ python3 -c 'print(__import__("my_module").MyClass.__doc__)'
 python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
 ```
 
-### Running tests
+#### Running tests
 
 ```python
 # running all tests
